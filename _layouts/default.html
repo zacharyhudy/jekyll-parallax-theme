@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+  {% include head.html %}
+
+  <body>
+  
+  {% include nav.html %}
+    
+    <header id="slide-1" class="site-header" 
+    style="background-image: url('{{page.backgroundimg}}');" 
+    data-0="opacity: 1; width: 100%; height: 500px; top: 0%; left: 0%;" 
+    data-500="opacity: 0; width: 156%; height: 1000px; top: -28%; left: -28%;"
+    data-anchor-target="#slide-1">
+      <div class="header-desc">
+        <h2>{{page.description}}</h2>
+      </div>
+    </header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        {{ content }}
+      </div>
+    </div>
+
+    {% include footer.html %}
+
+    <script>
+
+      ( function( $ ) {
+
+        $window = $(window);
+        $htmlbody = $('html,body');
+        $slide = $('.homeSlide');
+        $body = $('body');
+
+        var w     = $(window).width(),
+            toggle  = $('.site-nav .menu-icon'),
+            menu    = $('.trigger');
+
+        //toggle mobile menu
+        $(function() {
+          $(toggle).on('click', function(e) {
+            e.preventDefault();
+            menu.toggle();
+            this.classList.toggle( "active" );
+          });
+        });
+
+        // resets menu when going back to desktop mode
+        $(window).resize(function(){
+          if(w > 320 && menu.is(':hidden')) {
+            menu.removeAttr('style');}
+        });
+       
+        // add black background to nav when scrolled down
+        $window.scroll(function() {
+          if ($(".navigation").offset().top > 350) {
+              $(".navigation").addClass("top-nav-collapse");
+          } else {
+              $(".navigation").removeClass("top-nav-collapse");
+          }
+        });
+
+        // Resize sections
+        adjustWindow();
+        
+        function adjustWindow(){
+          var s = skrollr.init();
+
+          // get window size
+          winH = $window.height();
+          
+          if(winH <= 550) {
+            winH = 550;
+          } 
+          s.refresh($('.homeSlide'));
+        }
+
+        $('.header-desc h2').velocity({opacity: 1, marginTop: 0}, {duration: 1500, delay: 500});
+
+      })( jQuery );
+    </script>
+  </body>
+</html>

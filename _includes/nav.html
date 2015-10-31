@@ -1,0 +1,26 @@
+
+<div class="navigation">
+  <div class="wrapper">
+    <a class="site-title" href="{{ site.baseurl }}/">{{ site.title }}</a>
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <i class="fa fa-bars fa-2x"></i>
+      </a>
+
+      <div class="trigger">
+
+        {% assign pages = site.pages | sort: 'navPosition'  %}
+        <ul>
+          {% for p in pages %}
+            {% if p.title %}
+              <li>
+                <a {% if p.url == page.url %}class="active"{% endif %} href="{{ p.url }}">{{ p.title }}</a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>
+
