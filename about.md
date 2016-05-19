@@ -3,7 +3,7 @@ layout: page
 title: About
 permalink: /about/
 description: About us
-backgroundimg: ../images/about.jpg
+backgroundimg: /images/about.jpg
 
 lang: en
 navPosition: 1
